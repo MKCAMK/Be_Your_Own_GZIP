@@ -7,3 +7,5 @@ Windows; Visual Studio 2019 solution.
 
 ## Usage
 Drop and drop a file (or files) that is to be scanned onto the executable.
+
+![successfully extracting GZIP files](examples/example.jpg)
