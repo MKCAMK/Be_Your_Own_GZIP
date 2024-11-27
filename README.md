@@ -6,6 +6,6 @@ The tool will scan a binary file for the start of a GZIP header, and if any is f
 Windows; Visual Studio 2019 solution.
 
 ## Usage
-Drop and drop a file (or files) that is to be scanned onto the executable.
+Drag and drop a file (or files) that is to be scanned onto the executable.
 
 ![successfully extracting GZIP files](examples/example.jpg)
