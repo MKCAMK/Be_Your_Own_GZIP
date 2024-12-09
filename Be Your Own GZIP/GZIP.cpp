@@ -12,11 +12,11 @@ FINDINGS::FINDINGS(const size_t par_Position) : Position(par_Position) {};
 
 static std::runtime_error PrepareException(const std::wstring& ErrorMessage)
 {
-	std::string msg;
-	msg.resize(WideCharToMultiByte(CP_ACP, NULL, ErrorMessage.c_str(), -1, NULL, 0, NULL, NULL));
-	WideCharToMultiByte(CP_ACP, NULL, ErrorMessage.c_str(), -1, msg.data(), static_cast<int>(msg.size()), NULL, NULL);
+	std::u8string msg;
+	msg.resize(WideCharToMultiByte(CP_UTF8, NULL, ErrorMessage.c_str(), -1, NULL, 0, NULL, NULL));
+	WideCharToMultiByte(CP_UTF8, NULL, ErrorMessage.c_str(), -1, reinterpret_cast<char*>(msg.data()), static_cast<int>(msg.size()), NULL, NULL);
 
-	return std::runtime_error(msg.c_str());
+	return std::runtime_error(reinterpret_cast<const char*>(msg.c_str()));
 }
 
 static bool Read4LittleEndianByteValue(std::istream& InputStream, size_t& BytesRead, unsigned long long& Value)
@@ -273,7 +273,7 @@ static bool ExtractGZIP(std::istream& InputStream, const std::filesystem::path& 
 
 	// Ouput the found GZIP data to a file.
 	{
-		if (std::filesystem::exists(OutputFilePath))
+		if (!std::filesystem::exists(OutputFilePath))
 			throw PrepareException(L"Could not create a new file:\n   " + OutputFilePath.wstring());
 
 		{

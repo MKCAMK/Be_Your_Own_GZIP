@@ -13,8 +13,8 @@ void DisplayError(std::exception& ex) noexcept
 	try
 	{
 		std::wstring wmsg;
-		wmsg.resize(MultiByteToWideChar(CP_ACP, NULL, ex.what(), -1, NULL, 0));
-		MultiByteToWideChar(CP_ACP, NULL, ex.what(), -1, wmsg.data(), static_cast<int>(wmsg.size()));
+		wmsg.resize(MultiByteToWideChar(CP_UTF8, NULL, ex.what(), -1, NULL, 0));
+		MultiByteToWideChar(CP_UTF8, NULL, ex.what(), -1, wmsg.data(), static_cast<int>(wmsg.size()));
 		std::wcout << wmsg << std::endl << std::endl;
 	}
 	catch (...) {}
