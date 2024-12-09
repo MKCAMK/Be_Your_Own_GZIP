@@ -31,7 +31,7 @@ int wmain(const int argc, const wchar_t* const* const argv)
 	std::hex(std::wcout);
 	std::showbase(std::wcout);
 
-	std::wcout << std::endl << L" Be  Your  Own  GZIP" << std::endl << std::endl;
+	std::wcout << L"———————————————————" << std::endl << L"Be  Your  Own  GZIP" << std::endl << L"———————————————————" << std::endl;
 
 	if (argc > 1)
 	{
